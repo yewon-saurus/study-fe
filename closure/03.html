@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <button class="toggle">Toggle</button>
+        <div class="box" style="width: 100px; height: 100px; background: blue;"></div>
+
+        <script>
+            let button = document.querySelector('.toggle');
+            let box = document.querySelector('.box');
+
+            let toggle = (function () {
+                let isShow = false;
+
+                return function () {
+                    box.style.display = isShow ? 'block' : 'none';
+                    isShow = !isShow;
+                };
+            }) ();
+
+            button.onclick = toggle;
+        </script>
+    </body>
+</html>

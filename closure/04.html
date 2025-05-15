@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <button id="increase">+1</button>
+        <p id="count">0</p>
+    </body>
+
+    <script>
+        let increaseBtn = document.querySelector('#increase');
+        let count = document.querySelector('#count');
+
+        let increase = (function () {
+            let counter = 0;
+
+            return function () {
+                return ++counter;
+            };
+        }) ();
+
+        increaseBtn.onclick = function () {
+            count.innerHTML = increase();
+        };
+    </script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>디바운스</title>
+    </head>
+    <body>
+        <input id="search" />
+        <p id="result">[기본]검색어: </p>
+        <p id="debounce_result">[디바운스]검색어: </p>
+    </body>
+    <script>
+        const input = document.querySelector('#search');
+        const result = document.querySelector('#result');
+        const debounceResult = document.querySelector('#debounce_result');
+
+        input.addEventListener('input', (e) => {
+            result.textContent = `[기본]검색어: ${e.target.value}`;
+        });
+
+        input.addEventListener('input', debounce((e) => {
+            debounce_result.textContent = `[디바운스]검색어: ${e.target.value}`;
+        }, 1000));
+
+        function debounce(func, delay) {
+            let timeoutId;
+            return function (...args) {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => func.apply(this, args), delay);
+            };
+        }
+    </script>
+</html>

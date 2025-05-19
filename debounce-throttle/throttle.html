@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>쓰로틀</title>
+    </head>
+    <body>
+        <div style="position: fixed">
+            <p id="result">[일반]스크롤 위치: </p>
+            <p id="throttle_result">[쓰로틀]스크롤 위치: </p>
+        </div>
+        <div style="height: 3000px;"></div>
+    </body>
+    <script>
+        const throttleResult = document.querySelector('#throttle_result');
+
+        window.addEventListener('scroll', () => {
+            result.textContent = `[일반]스크롤 위치: ${window.scrollY}`;
+        });
+
+        window.addEventListener('scroll', throttle(() => {
+            throttle_result.textContent = `[쓰로틀]스크롤 위치: ${window.scrollY}`;
+        }, 1000));
+
+        function throttle(func, delay) {
+            let lastCall = 0;
+
+            return function (...args) {
+                const now = new Date().getTime();
+
+                if (now - lastCall >= delay) {
+                    lastCall = now;
+                    func.apply(this, args);
+                }
+            };
+        }
+    </script>
+</html>
